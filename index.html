@@ -1,29 +1,162 @@
-!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TechShop — Магазин майбутнього</title>
+    <style>
+        /* Загальні налаштування */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Фонова картинка на весь екран */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Шапка сайту */
+        header {
+            background-color: rgba(31, 31, 31, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #00d4ff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Контентна частина */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Напівпрозорий фон для тексту */
+            backdrop-filter: blur(10px); /* Ефект розмиття фону */
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        /* Картка товару */
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        article {
+            background: white;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        article:hover {
+            transform: translateY(-10px);
+        }
+
+        article img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #00d4ff;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #008fb3;
+        }
+
+        /* Підвал */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: #1f1f1f;
+        }
+    </style>
 </head>
 <body>
-    <header>
+
+<header>
     <h1>TechShop</h1>
     <nav>
-        <a href="#">Головна</a> | <a href="#">Товари</a> | <a href="#">Про нас</a>
+        <a href="#">Головна</a>
+        <a href="#">Товари</a>
+        <a href="#">Про нас</a>
+        <a href="#">Контакти</a>
     </nav>
 </header>
+
 <main>
     <section>
         <h2>Популярні товари</h2>
-        <article>
-           <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300&auto=format&fit=crop" alt="Навушники Sony">
-            <h3>Навушники Sony </h3>
-            <button>Купити</button>
-        </article>
+        <div class="product-grid">
+            <article>
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300&auto=format&fit=crop" alt="Навушники Sony">
+                <h3>Навушники Sony</h3>
+                <p>Ціна: 5 400 грн</p>
+                <button>Купити</button>
+            </article>
+
+            <article>
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=300&auto=format&fit=crop" alt="Годинник">
+                <h3>Smart Watch</h3>
+                <p>Ціна: 2 100 грн</p>
+                <button>Купити</button>
+            </article>
+        </div>
     </section>
 </main>
+
 <footer>
-    <p>&copy; 2026 TechShop</p>
+    <p>&copy; 2026 TechShop. Всі права захищені.</p>
 </footer>
 
 </body>
