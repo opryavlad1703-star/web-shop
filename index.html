@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TechShop - Магазин гаджетів</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
@@ -13,26 +14,26 @@
     </header>
 
     <main>
-        <section>
+        <section class="news">
             <h2>Новинки 2025</h2>
-            <a href="#">Дивитися</a>
+            <a href="#" class="btn-link">Дивитися</a>
         </section>
 
-        <section>
+        <section class="products">
             <h2>Популярні товари</h2>
-            <article>
+            <article class="product-card">
                 <img src="https://via.placeholder.com/150" alt="Гаджет">
                 <h3>Супер Гаджет</h3>
-                <p>Ціна: 1000 грн</p>
-                <button type="button">Купити</button>
+                <p class="price">Ціна: 1000 грн</p>
+                <button type="button" class="buy-btn">Купити</button>
             </article>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 TechShop</p>
-        <form>
-            <input type="email" placeholder="Email">
+        <p>&copy; 2026 TechShop</p>
+        <form class="subscribe-form">
+            <input type="email" placeholder="Email" required>
             <button type="submit">OK</button>
         </form>
     </footer>
