@@ -2,74 +2,157 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>TechShop - Магазин гаджетів</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій Логотип - Вивчаємо Flexbox</title>
     <style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #f8fafc;
-        margin: 0;
-        padding: 20px;
-        text-align: center;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    header {
-        background: #1e293b;
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8fafc; 
+            color: #333;
+            /* Flexbox для того, щоб футер завжди був внизу */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
 
-    .product-card {
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 15px;
-        padding: 20px;
-        display: inline-block;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    button {
-        background-color: #2563eb;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-</style>
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            flex: 1;
+            padding: 20px 40px;
+            gap: 30px;
+        }
+
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .sidebar p {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+   
+        .content-area {
+            flex: 1;
+        }
+
+        .content-area h1 {
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .content-area > p {
+            margin-bottom: 25px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+ 
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 220px; 
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>TechShop</h1>
+        <h1>Мій Логотип</h1>
         <nav>
-            <a href="#">Головна</a> | <a href="#">Товари</a> | <a href="#">Кошик</a>
+            <a href="#">Головна</a>
+            <a href="#">Про нас</a>
+            <a href="#">Контакти</a>
         </nav>
     </header>
 
     <main>
-        <section class="news">
-            <h2>Новинки 2025</h2>
-            <a href="#" class="btn-link">Дивитися</a>
-        </section>
+        <aside class="sidebar">
+            <h2>Меню</h2>
+            <p>Тут будуть додаткові посилання або віджети.</p>
+        </aside>
 
-        <section class="products">
-            <h2>Популярні товари</h2>
-            <article class="product-card">
-                <img src="https://via.placeholder.com/150" alt="Гаджет">
-                <h3>Супер Гаджет</h3>
-                <p class="price">Ціна: 1000 грн</p>
-                <button type="button" class="buy-btn">Купити</button>
-            </article>
+        <section class="content-area">
+            <h1>Вивчаємо Flexbox</h1>
+            <p>Цей блок буде займати основну частину екрану. Flexbox допоможе нам легко розмістити його поруч із сайдбаром.</p>
+            
+            <div class="cards-container">
+                <article class="card">Картка 1</article>
+                <article class="card">Картка 2</article>
+                <article class="card">Картка 3</article>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 TechShop</p>
-        <form class="subscribe-form">
-            <input type="email" placeholder="Email" required>
-            <button type="submit">OK</button>
-        </form>
+        <p>&copy; 2026 Практика Flexbox. Всі права захищено.</p>
     </footer>
 </body>
 </html>
