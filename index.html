@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мій Логотип - Вивчаємо Flexbox</title>
+    <title>Мій Логотип - CSS Grid & Media Queries</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,7 +15,6 @@
             font-family: 'Segoe UI', sans-serif;
             background-color: #f8fafc; 
             color: #333;
-            /* Flexbox для того, щоб футер завжди був внизу */
             display: flex;
             flex-direction: column;
             min-height: 100vh; 
@@ -30,11 +29,6 @@
             align-items: center;
         }
 
-        header h1 {
-            font-size: 1.8rem;
-            margin: 0;
-        }
-
         nav {
             display: flex;
             gap: 20px;
@@ -46,17 +40,12 @@
             font-weight: 500;
         }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         main {
             display: flex;
             flex: 1;
             padding: 20px 40px;
             gap: 30px;
         }
-
 
         .sidebar {
             width: 250px;
@@ -68,40 +57,18 @@
             height: fit-content;
         }
 
-        .sidebar h2 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .sidebar p {
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-   
         .content-area {
             flex: 1;
         }
 
-        .content-area h1 {
-            margin-bottom: 15px;
-            color: #1e293b;
-        }
-
-        .content-area > p {
-            margin-bottom: 25px;
-            color: #475569;
-            line-height: 1.6;
-        }
-
+        /* --- ЗМІНИ ДЛЯ GRID --- */
         .cards-container {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            /* Створюємо 3 колонки однакової ширини за замовчуванням */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 20px;
         }
 
- 
         .card {
             background: white;
             border: 1px solid #e2e8f0;
@@ -109,17 +76,46 @@
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 220px; 
+            /* Прибираємо фіксовану ширину, тепер картка займає всю клітинку гріда */
             font-weight: bold;
             color: #1e293b;
         }
-
 
         footer {
             background: #1e293b;
             color: white;
             padding: 20px 40px;
             text-align: center;
+        }
+
+        /* --- МЕДІАЗАПИТИ (Media Queries) --- */
+
+        /* Для планшетів (до 1024px) */
+        @media (max-width: 1024px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+            }
+        }
+
+        /* Для мобільних пристроїв (до 768px) */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column; /* Сайдбар стає над контентом */
+            }
+
+            .sidebar {
+                width: 100%; /* Сайдбар на всю ширину */
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr; /* 1 колонка (картки одна під одною) */
+            }
         }
     </style>
 </head>
@@ -140,19 +136,20 @@
         </aside>
 
         <section class="content-area">
-            <h1>Вивчаємо Flexbox</h1>
-            <p>Цей блок буде займати основну частину екрану. Flexbox допоможе нам легко розмістити його поруч із сайдбаром.</p>
+            <h1>Лабораторна №5: Grid Layout</h1>
+            <p>Ми замінили Flexbox на CSS Grid для карток та додали медіазапити для адаптивності.</p>
             
             <div class="cards-container">
                 <article class="card">Картка 1</article>
                 <article class="card">Картка 2</article>
                 <article class="card">Картка 3</article>
+                <article class="card">Картка 4</article>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Практика Flexbox. Всі права захищено.</p>
+        <p>&copy; 2026 Практика Grid. Всі права захищено.</p>
     </footer>
 </body>
 </html>
