@@ -45,23 +45,118 @@
         }
 
         main {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+            display: grid;
+            grid-template-columns: 260px 1fr; 
+            gap: 30px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
             padding: 40px 20px;
-            align-items: center;
+            flex: 1;
         }
 
+        
+        .sidebar {
+            grid-column: 1;
+            grid-row: 1 / span 2; 
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: max-content; 
+        }
 
-        .checkout-container {
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .sidebar ul {
+            list-index: none;
+            list-style-type: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #475569;
+            cursor: pointer;
+        }
+
+       
+        .products-content {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .products-content h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
             width: 100%;
-            max-width: 600px;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        
+        .checkout-container {
+            grid-column: 2;
+            grid-row: 2;
+            width: 100%;
+            margin-top: 20px;
         }
 
         .checkout-container h2 {
             margin-bottom: 20px;
             color: #1e293b;
-            text-align: center;
         }
 
         .checkout-form {
@@ -108,7 +203,6 @@
             width: 100%;
         }
 
-
         .form-radio, .form-checkbox {
             display: flex;
             align-items: center;
@@ -122,7 +216,6 @@
             cursor: pointer;
         }
 
-
         .form-group input:invalid:focus,
         .form-group textarea:invalid:focus,
         .form-group select:invalid:focus {
@@ -131,25 +224,14 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
         }
 
-
         .form-group input:valid:not(:placeholder-shown),
         .form-group textarea:valid:not(:placeholder-shown) {
             border-color: #10b981; 
         }
 
-
         .btn-primary {
-            display: block;
-            width: 100%;
             background: #2563eb;
             color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
         }
 
         .btn-primary:hover {
@@ -161,17 +243,17 @@
             color: white;
             padding: 20px 40px;
             text-align: center;
+            margin-top: 40px;
         }
 
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+        
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr; 
             }
-            .checkout-form {
-                padding: 1.5rem;
+            .sidebar, .products-content, .checkout-container {
+                grid-column: 1;
+                grid-row: auto; 
             }
         }
     </style>
@@ -187,67 +269,65 @@
     </header>
 
     <main>
+        
+        <aside class="sidebar">
+            <h3>Фільтри</h3>
+            <ul>
+                <li><input type="checkbox" /> Ноутбуки</li>
+                <li><input type="checkbox" /> Смартфони</li>
+            </ul>
+        </aside>
+
+        
+        <section class="products-content">
+            <h2>Популярні товари</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Товар 1" />
+                    <h3>Ноутбук XYZ</h3>
+                    <p>15 000 грн</p>
+                    <button class="btn btn-primary">Додати до кошика</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Товар 2" />
+                    <h3>Смартфон ABC</h3>
+                    <p>8 000 грн</p>
+                    <button class="btn btn-primary">Додати до кошика</button>
+                </div>
+            </div>
+        </section>
+
+
         <div class="checkout-container">
             <h2>Оформлення замовлення</h2>
             
             <form action="#" method="POST" class="checkout-form">
                 <fieldset>
                     <legend>1. Особисті дані</legend>
-                    
                     <div class="form-group">
                         <label for="fullName">ПІБ:</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            required
-                            placeholder="Іванов Іван Іванович"
-                        />
+                        <input type="text" id="fullName" name="fullName" required placeholder="Іванов Іван Іванович" />
                     </div>
-                    
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" required placeholder="example@mail.com" />
                     </div>
-                    
                     <div class="form-group">
                         <label for="phone">Телефон:</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            pattern="[\+]\d{2}\d{10}"
-                            placeholder="+380991234567"
-                            required
-                            title="Формат: +380XXXXXXXXX"
-                        />
+                        <input type="tel" id="phone" name="phone" pattern="[\+]\d{2}\d{10}" placeholder="+380991234567" required title="Формат: +380XXXXXXXXX" />
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>2. Спосіб доставки</legend>
-                    
                     <div class="form-radio">
-                        <input
-                            type="radio"
-                            id="deliveryNova"
-                            name="delivery"
-                            value="nova_poshta"
-                            checked
-                        />
+                        <input type="radio" id="deliveryNova" name="delivery" value="nova_poshta" checked />
                         <label for="deliveryNova">Нова Пошта</label>
                     </div>
-                    
                     <div class="form-radio">
-                        <input
-                            type="radio"
-                            id="deliveryCourier"
-                            name="delivery"
-                            value="courier"
-                        />
+                        <input type="radio" id="deliveryCourier" name="delivery" value="courier" />
                         <label for="deliveryCourier">Кур'єр за адресою</label>
                     </div>
-
                     <div class="form-group">
                         <label for="city">Місто:</label>
                         <select id="city" name="city">
@@ -263,12 +343,10 @@
 
                 <fieldset>
                     <legend>3. Додатково</legend>
-                    
                     <div class="form-group">
                         <label for="comment">Коментар до замовлення:</label>
                         <textarea id="comment" name="comment" rows="4" placeholder="Ваші побажання до замовлення..."></textarea>
                     </div>
-                    
                     <div class="form-checkbox">
                         <input type="checkbox" id="agreement" name="agreement" required />
                         <label for="agreement">Я погоджуюсь з правилами магазину</label>
