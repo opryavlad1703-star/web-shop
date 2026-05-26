@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechShop - Магазин техніки</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .social-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .social-links svg {
+            fill: #94a3b8;
+            transition: fill 0.3s ease;
+        }
+        .social-links a:hover svg {
+            fill: #2563eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8fafc; 
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+        }
+
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .page-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            padding: 2rem 5%;
+            flex: 1;
+        }
+
+        
+        .checkout-layout {
+            padding: 2rem 5%;
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: max-content; 
+        }
+
+        .sidebar h2 { 
+            margin-bottom: 15px;
+            color: #1e293b;
+            font-size: 1.17em; 
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #475569;
+        }
+
+        .products-content h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem; 
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checkout-container {
+            width: 100%;
+        }
+
+        .checkout-container h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .checkout-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        fieldset {
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #1e293b;
+            padding: 0 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.6rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .form-radio, .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+        }
+
+        .form-radio input, .form-checkbox input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .form-group input:invalid:focus,
+        .form-group textarea:invalid:focus,
+        .form-group select:invalid:focus {
+            border-color: #ef4444;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .form-group input:valid:not(:placeholder-shown),
+        .form-group textarea:valid:not(:placeholder-shown) {
+            border-color: #10b981; 
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto; 
+        }
+
+        
+        .hidden {
+            display: none !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .main-nav ul{
+                display: none;
+            }
+            h2{
+                font-size: 1.5rem;
+            }
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .btn-cart {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto; 
+}
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle" aria-label="Відкрити меню">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+    </svg>
+</button>
+        
+        <button class="btn btn-cart ">
+            <svg xmlns="http://www.w3.org/2000/svg"
+             width="24" 
+             height="24" 
+             fill="#000000" 
+             viewBox="0 0 256 256"><path d="M230.14,58.87A8,8,0,0,0,224,56H62.68L56.6,22.57A8,8,0,0,0,48.73,16H24a8,8,0,0,0,0,16h18L67.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,160,204a28,28,0,1,0,28-28H91.17a8,8,0,0,1-7.87-6.57L80.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,230.14,58.87ZM104,204a12,12,0,1,1-12-12A12,12,0,0,1,104,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,200,204Zm4-74.57A8,8,0,0,1,196.1,136H77.22L65.59,72H214.41Z"></path>
+            </svg>
+            
+            Кошик
+        </button>
+
+        <h1>Мій Логотип</h1>
+        <nav>
+            <a id="btn-home">Головна</a>
+            <a href="#">Про нас</a>
+            <a id="btn-checkout">Оформлення замовлення</a>
+        </nav>
+    </header>
+
+    <main>
+        
+        <div id="page-catalog" class="page-layout">
+            <aside class="sidebar">
+                <h2>Фільтри</h2> <ul>
+                    <li><input type="checkbox"> Ноутбуки</li> <li><input type="checkbox"> Смартфони</li> </ul>
+            </aside>
+
+            <section class="products-content">
+                <h2>Популярні товари</h2>
+                <div class="products-grid">
+                    <article class="product-card">
+                        <img src="https://via.placeholder.com/150" alt="Товар 1"> <h3>Ноутбук XYZ</h3>
+                        <p>15 000 грн</p>
+                        <button class="btn btn-primary">Додати до кошика</button>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="https://via.placeholder.com/150" alt="Товар 2"> <h3>Смартфон ABC</h3>
+                        <p>8 000 грн</p>
+                        <button class="btn btn-primary">Додати до кошика</button>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="page-checkout" class="checkout-layout hidden">
+            <div class="checkout-container">
+                <h2>Оформлення замовлення</h2>
+                <form action="#" method="POST" class="checkout-form">
+                    <fieldset>
+                        <legend>1. Особисті дані</legend>
+                        <div class="form-group">
+                            <label for="fullName">ПІБ:</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Іванов Іван Іванович"> </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required placeholder="example@mail.com"> </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон:</label>
+                            <input type="tel" id="phone" name="phone" pattern="[\+]\d{2}\d{10}" placeholder="+380991234567" required title="Формат: +380XXXXXXXXX"> </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>2. Спосіб доставки</legend>
+                        <div class="form-radio">
+                            <input type="radio" id="deliveryNova" name="delivery" value="nova_poshta" checked> <label for="deliveryNova">Нова Пошта</label>
+                        </div>
+                        <div class="form-radio">
+                            <input type="radio" id="deliveryCourier" name="delivery" value="courier"> <label for="deliveryCourier">Кур'єр за адресою</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Місто:</label>
+                            <select id="city" name="city">
+                                <option value="kyiv">Київ</option>
+                                <option value="lviv">Львів</option>
+                                <option value="odesa">Одеса</option>
+                                <option value="kropyvnytskyi">Кропивницький</option>
+                                <option value="сherkasy">Черкаси</option>
+                                <option value="mykolayiv">Миколаїв</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>3. Додатково</legend>
+                        <div class="form-group">
+                            <label for="comment">Коментар до замовлення:</label>
+                            <textarea id="comment" name="comment" rows="4" placeholder="Ваші побажання до замовлення..."></textarea>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="agreement" name="agreement" required> <label for="agreement">Я погоджуюсь з правилами магазину</label>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn btn-primary">Підтвердити замовлення</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <ul class="social-links">
+            <li>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://t.me" target="_blank" aria-label="Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M22.05 4.89l-3.3 15.54c-.24 1.11-.9 1.39-1.83.86l-5.03-3.72-2.42 2.33c-.27.27-.49.49-.9.49l.36-5.11 9.3-8.4c.4-.36-.09-.56-.63-.2l-11.5 7.24-4.95-1.55c-1.08-.34-1.1-.1.23-.62l19.35-7.46c.9-.33 1.68.21 1.39 1.62z"/>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+        <p>&copy; 2026 Практика Форм. Всі права захищено.</p>
+    </footer>
+
+    
+    <script>
+        const btnHome = document.getElementById('btn-home');
+        const btnCheckout = document.getElementById('btn-checkout');
+        
+        const pageCatalog = document.getElementById('page-catalog');
+        const pageCheckout = document.getElementById('page-checkout');
+
+        
+        btnHome.addEventListener('click', () => {
+            pageCatalog.classList.remove('hidden');
+            pageCheckout.classList.add('hidden');
+        });
+
+         
+        btnCheckout.addEventListener('click', () => {
+            pageCatalog.classList.add('hidden');
+            pageCheckout.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
